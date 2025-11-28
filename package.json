@@ -1,10 +1,10 @@
 {
 	"name": "Blockbench",
-	"description": "Low-poly modeling and animation software",
-	"version": "5.0.4",
+	"description": "Low-poly modeling and animation software (Modified by DeaBingFeng - Internal Use Only)",
+	"version": "5.0.5",
 	"license": "GPL-3.0-or-later",
 	"author": {
-		"name": "JannisX11",
+		"name": "DeaBingFeng (Original: JannisX11)",
 		"email": "info@blockbench.net"
 	},
 	"homepage": "https://blockbench.net",
@@ -82,9 +82,6 @@
 			]
 		},
 		"win": {
-			"signtoolOptions": {
-				"certificateSubjectName": "Jannis Tobias Petersen"
-			},
 			"artifactName": "${productName}_${arch}_${version}.${ext}",
 			"target": {
 				"target": "nsis",

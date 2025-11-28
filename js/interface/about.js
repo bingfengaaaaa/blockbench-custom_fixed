@@ -51,6 +51,7 @@ BARS.defineActions(() => {
 							<div class="blockbench_logo" id="about_page_title">
 								<img src="assets/logo_text_white.svg" alt="Blockbench" width="340px">
 							</div>
+							<p style="color: #ff9800; font-weight: bold;">⚠️ 自定义修改版 - 仅供内部使用</p>
 							<p>Version <span>{{ version_label }}</span></p>
 
 							<div class="socials">
@@ -84,7 +85,8 @@ BARS.defineActions(() => {
 								</a>
 							</div>
 
-							<p>Created by Jannis Petersen</p>
+							<p><strong>修改者：DeaBingFeng</strong></p>
+							<p>原软件作者：Jannis Petersen</p>
 							<p style="color: var(--color-subtle_text);">A free and open-source low-poly model editor. To make 3D art easy and accessible for everyone.
 								For all who enjoy stylized 3D art. For game developers, students, content creators, and for the Minecraft community.</p>
 

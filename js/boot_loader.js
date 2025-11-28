@@ -179,3 +179,27 @@ if (Blockbench.isMobile) {
 document.getElementById('page_wrapper').classList.remove('invisible');
 
 Blockbench.setup_successful = true;
+
+// 自定义版本启动提示
+(function showCustomVersionNotice() {
+	Blockbench.showMessageBox({
+		title: '⚠️ 自定义修改版声明',
+		message: `
+本软件为 **Blockbench** 的自定义修改版本。
+
+**修改者：** DeaBingFeng
+
+**原软件：** Blockbench by JannisX11
+
+**重要声明：**
+- 本版本仅供内部使用
+- **严禁外传或分发**
+- 请遵守原软件的 GPL-3.0 许可证
+
+如需原版软件，请访问：https://blockbench.net
+		`,
+		icon: 'warning',
+		width: 500,
+		buttons: ['我已知晓并同意']
+	});
+})();

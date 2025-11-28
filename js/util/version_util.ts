@@ -1,9 +1,10 @@
-const VERSION_REGEX = /^(?<version>[\d.]+)(?:-beta\.(?<beta>[\d\.]+))?$/
+const VERSION_REGEX = /^(?<version>[\d.]+)(?:-(?:beta\.)?(?<beta>[\d\.]+|[a-zA-Z]+[\w]*))?$/
 
 interface ParsedVersion {
 	string: string
 	version: number[]
 	beta?: number[]
+	custom?: string
 }
 
 type Operator = '<=' | '==' | '>=' | '>' | '<'
@@ -12,6 +13,15 @@ function parse(versionString: string): ParsedVersion {
 	const match = versionString.match(VERSION_REGEX)
 
 	if (!match) {
+		// 对于无法解析的版本号，尝试提取数字部分
+		const numbersOnly = versionString.match(/^([\d.]+)/)
+		if (numbersOnly) {
+			return {
+				string: versionString,
+				version: numbersOnly[1].split('.').map(v => parseInt(v)),
+				custom: versionString.replace(numbersOnly[1], '')
+			}
+		}
 		throw new Error(
 			`Invalid version format '${versionString}'.` +
 				"Expected a list of dot-separated numbers, optionally followed by '-beta.' " +
@@ -20,10 +30,14 @@ function parse(versionString: string): ParsedVersion {
 	}
 
 	const { version, beta } = match.groups
+	const betaPart = beta ? beta.split('.') : undefined
+	const isBetaNumeric = betaPart && betaPart.every(v => /^\d+$/.test(v))
+	
 	return {
 		string: versionString,
 		version: version.split('.').map(v => parseInt(v)),
-		beta: beta ? beta.split('.').map(v => parseInt(v)) : undefined,
+		beta: isBetaNumeric ? betaPart.map(v => parseInt(v)) : undefined,
+		custom: !isBetaNumeric && beta ? beta : undefined
 	}
 }
 
